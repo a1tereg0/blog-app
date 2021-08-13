@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Post from "../Post/Post";
 import Spinner from "../UI/Spinner";
-import classes from "./Posts.module.css";
-import { NavLink } from "react-router-dom";
 
 import { fetchPosts } from "../../actions/postActions";
 
@@ -29,35 +27,7 @@ const Posts = ({ dispatch, loading, posts, hasErrors, history }) => {
   };
 
   return (
-    <div className={classes.Posts}>
-      <header>
-        <nav>
-          <ul>
-            <li>
-              <NavLink
-                exact
-                activeClassName="home-active"
-                activeStyle={{
-                  color: "#de5499",
-                  textDecoration: "underline",
-                }}
-                to="/"
-              >
-                Posts
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to={{
-                  pathname: "/new-post",
-                }}
-              >
-                New Post
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
-      </header>
+    <div>
       <section>
         <h1>Posts</h1>
         {renderPosts()}

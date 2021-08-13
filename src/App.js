@@ -1,16 +1,11 @@
 import React from "react";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import Posts from "./components/Posts/Posts";
-import FullPost from "./components/FullPost/FullPost";
+import { BrowserRouter } from "react-router-dom";
+import Blog from "./components/Blog";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={Posts} />
-        <Route exact path="/:id" component={FullPost} />
-        <Redirect to="/" />
-      </Switch>
+      <Blog />
     </BrowserRouter>
   );
 };
