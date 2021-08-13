@@ -4,6 +4,7 @@ import classes from "./Blog.module.css";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Posts from "./Posts/Posts";
 import FullPost from "./FullPost/FullPost";
+import NewPost from "./NewPost/NewPost";
 
 const Blog = () => (
   <div className={classes.Blog}>
@@ -37,6 +38,7 @@ const Blog = () => (
     </header>
     <Switch>
       <Route exact path="/" component={Posts} />
+      <Route exact path="/new-post" component={NewPost} />
       <Route exact path="/:id" component={FullPost} />
       <Redirect to="/" />
     </Switch>
