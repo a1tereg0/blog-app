@@ -1,12 +1,20 @@
 import React from "react";
+import { connect } from "react-redux";
+import classes from "./FullPost.module.css";
 
-const FullPost = () => {
+const FullPost = ({ posts, match }) => {
+  const post = posts.find((p) => p.id === +match.params.id);
+  console.log(post);
   return (
-    <div className="FullPost">
-      <h1>Title</h1>
-      <p>Body</p>
+    <div className={classes.FullPost}>
+      <h1>{post.title}</h1>
+      <p>{post.body}</p>
     </div>
   );
 };
 
-export default FullPost;
+const mapStateToProps = (state) => ({
+  posts: state.posts.posts,
+});
+
+export default connect(mapStateToProps)(FullPost);
