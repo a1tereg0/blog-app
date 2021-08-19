@@ -6,8 +6,9 @@ import Posts from "./Posts/Posts";
 import FullPost from "./FullPost/FullPost";
 import NewPost from "./NewPost/NewPost";
 import Auth from "../components/Auth/Auth";
+import { connect } from "react-redux";
 
-const Blog = () => (
+const Blog = ({ token }) => (
   <div className={classes.Blog}>
     <header>
       <nav>
@@ -25,35 +26,51 @@ const Blog = () => (
               Posts
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to={{
-                pathname: "/new-post",
-              }}
-            >
-              New Post
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to={{
-                pathname: "/auth",
-              }}
-            >
-              Login
-            </NavLink>
-          </li>
+          {token !== null ? (
+            <li>
+              <NavLink
+                to={{
+                  pathname: "/new-post",
+                }}
+              >
+                New Post
+              </NavLink>
+            </li>
+          ) : null}
+          {token === null ? (
+            <li>
+              <NavLink
+                to={{
+                  pathname: "/auth",
+                }}
+              >
+                Login
+              </NavLink>
+            </li>
+          ) : null}
         </ul>
       </nav>
     </header>
-    <Switch>
-      <Route exact path="/" component={Posts} />
-      <Route exact path="/new-post" component={NewPost} />
-      <Route exact path="/auth" component={Auth} />
-      <Route exact path="/:id" component={FullPost} />
-      <Redirect to="/" />
-    </Switch>
+    {token !== null ? (
+      <Switch>
+        <Route exact path="/" component={Posts} />
+        <Route exact path="/new-post" component={NewPost} />
+        <Route exact path="/:id" component={FullPost} />
+        <Redirect to="/" />
+      </Switch>
+    ) : (
+      <Switch>
+        <Route exact path="/" component={Posts} />
+        <Route exact path="/auth" component={Auth} />
+        <Route exact path="/:id" component={FullPost} />
+        <Redirect to="/" />
+      </Switch>
+    )}
   </div>
 );
 
-export default Blog;
+const mapStateToProps = (state) => ({
+  token: state.auth.token,
+});
+
+export default connect(mapStateToProps)(Blog);
