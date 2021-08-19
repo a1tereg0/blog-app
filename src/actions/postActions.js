@@ -18,8 +18,19 @@ export const fetchPosts = () => {
   return async (dispatch) => {
     dispatch(getPosts());
     axios
-      .get("posts")
-      .then((response) => dispatch(getPostsSuccess(response.data)))
+      .get("/posts.json")
+      .then((response) => {
+        const posts = [];
+        for (const id in response.data) {
+          posts.push({
+            id: id,
+            title: response.data[id].title,
+            body: response.data[id].body,
+          });
+        }
+        console.log(posts);
+        dispatch(getPostsSuccess(posts));
+      })
       .catch((error) => dispatch(getPostsFailure()));
   };
 };
