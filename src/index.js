@@ -8,6 +8,7 @@ import "./index.css";
 import rootReducer from "./reducers";
 import App from "./App";
 import axios from "./axios";
+import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 
 axios.defaults.baseURL = "https://blog-app-b7ede-default-rtdb.firebaseio.com/";
@@ -21,7 +22,9 @@ const store = createStore(
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
