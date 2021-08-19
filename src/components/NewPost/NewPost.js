@@ -8,7 +8,7 @@ const NewPost = ({ history }) => {
 
   const postData = () => {
     const data = { title, body };
-    axios.post("/posts", data).then((response) => {
+    axios.post("/posts.json", data).then((response) => {
       console.log(response);
       history.replace("/");
     });
