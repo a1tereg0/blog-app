@@ -1,14 +1,15 @@
 import axios from "../../axios";
 import React, { useState } from "react";
 import classes from "./NewPost.module.css";
+import { connect } from "react-redux";
 
-const NewPost = ({ history }) => {
+const NewPost = ({ history, token }) => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
   const postData = () => {
     const data = { title, body };
-    axios.post("/posts.json", data).then((response) => {
+    axios.post("/posts.json?auth=" + token, data).then((response) => {
       console.log(response);
       history.replace("/");
     });
@@ -34,4 +35,8 @@ const NewPost = ({ history }) => {
   );
 };
 
-export default NewPost;
+const mapStateToProps = (state) => ({
+  token: state.auth.token,
+});
+
+export default connect(mapStateToProps)(NewPost);
