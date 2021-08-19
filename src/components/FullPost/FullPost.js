@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import classes from "./FullPost.module.css";
 
 const FullPost = ({ posts, match }) => {
-  const post = posts.find((p) => p.id === +match.params.id);
+  const post = posts.find((p) => p.id === match.params.id);
   console.log(post);
   return (
     <div className={classes.FullPost}>
