@@ -10,7 +10,7 @@ import App from "./App";
 import axios from "./axios";
 import reportWebVitals from "./reportWebVitals";
 
-axios.defaults.baseURL = "https://jsonplaceholder.typicode.com";
+axios.defaults.baseURL = "https://blog-app-b7ede-default-rtdb.firebaseio.com/";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 const store = createStore(
