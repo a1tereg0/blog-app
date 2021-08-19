@@ -5,6 +5,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Posts from "./Posts/Posts";
 import FullPost from "./FullPost/FullPost";
 import NewPost from "./NewPost/NewPost";
+import Auth from "../components/Auth/Auth";
 
 const Blog = () => (
   <div className={classes.Blog}>
@@ -33,12 +34,22 @@ const Blog = () => (
               New Post
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to={{
+                pathname: "/auth",
+              }}
+            >
+              Login
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </header>
     <Switch>
       <Route exact path="/" component={Posts} />
       <Route exact path="/new-post" component={NewPost} />
+      <Route exact path="/auth" component={Auth} />
       <Route exact path="/:id" component={FullPost} />
       <Redirect to="/" />
     </Switch>
