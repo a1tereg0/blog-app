@@ -7,3 +7,4 @@ export const GET_POSTS_FAILURE = "GET_POSTS_FAILURE";
 export const START_AUTH = "AUTH_START";
 export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const AUTH_FAIL = "AUTH_FAIL";
+export const AUTH_SIGN_OUT = "AUTH_SIGN_OUT";
